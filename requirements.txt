@@ -96,7 +96,6 @@ pdfminer.six==20201018
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==8.3.2
-pkg_resources==0.0.0
 pluggy==1.0.0
 portend==2.7.1
 preshed==3.0.5
