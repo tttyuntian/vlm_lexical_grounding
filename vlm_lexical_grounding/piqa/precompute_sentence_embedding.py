@@ -11,10 +11,10 @@ import torch
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 
-from vlm_lexical_grounding.utils.simple_classifier import MultipleChoiceClassifier
-from vlm_lexical_grounding.utils.general_tools import set_seed, get_embedder_path
-from piqa_tools import get_data_path, load_embedder
-from piqa_data import PIQADataset, get_tokenized_samples, load_data
+from ..utils.simple_classifier import MultipleChoiceClassifier
+from ..utils.general_tools import set_seed, get_embedder_path
+from .piqa_tools import get_data_path, load_embedder
+from .piqa_data import PIQADataset, get_tokenized_samples, load_data
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -27,7 +27,7 @@ def parseArguments():
     parser.add_argument("--num_rows", type=int, default=-1,
                         help="Number of samples for finetuning. -1 means all samples.")
     parser.add_argument("--seed", type=int, default=1123)
-    parser.add_argument("--data_dir_path", type=str, default="../../data/piqa")
+    parser.add_argument("--data_dir_path", type=str, default="./data/piqa")
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--report_step", type=int, default=1000)
@@ -47,12 +47,12 @@ def parseArguments():
     return args
 
 def get_logger(args):
-    os.makedirs("../../logs/piqa", exist_ok=True)
-    os.makedirs("../../logs/piqa/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/piqa", exist_ok=True)
+    os.makedirs("./logs/piqa/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(level=logging.INFO, \
             format = '%(asctime)s %(levelname)s: %(message)s', \
             datefmt = '%m/%d %H:%M:%S %p', \
-            filename = '../../logs/piqa/{}/{}.log'.format(args.output_name, args.output_name), \
+            filename = './logs/piqa/{}/{}.log'.format(args.output_name, args.output_name), \
             filemode = 'w'
     )
     return logging.getLogger(__name__)
@@ -98,7 +98,8 @@ def main(args):
     embedder.to(device)
     embedder.eval()
 
-    for split in ["train", "valid", "test"]:
+    #for split in ["train", "valid", "test"]:
+    for split in ["train", "valid"]:
         logger.info("="*70)
         logger.info(f"Start computing for split: {split}")
         
