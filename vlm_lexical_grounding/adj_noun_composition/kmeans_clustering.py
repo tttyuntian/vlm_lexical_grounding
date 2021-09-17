@@ -39,20 +39,20 @@ def parseArguments():
     df_info_path, embeddings_path = get_data_path(args)
     parser.add_argument("--df_info_path", type=str, default=df_info_path)
     parser.add_argument("--embeddings_path", type=str, default=embeddings_path)
-    parser.add_argument("--general_statistics_path", type=str, default="../../outputs/general_statistics/general_statistics_Rall/df_general.csv")
-    parser.add_argument("--mit_states_path", type=str, default="../../data/mit_states/release_dataset/adj_ants.csv")
+    parser.add_argument("--general_statistics_path", type=str, default="./outputs/general_statistics/general_statistics_Rall/df_general.csv")
+    parser.add_argument("--mit_states_path", type=str, default="./data/mit_states/release_dataset/adj_ants.csv")
     args = parser.parse_args()
 
     return args
 
 def get_logger(args):
-    os.makedirs("../../logs/clustering_final", exist_ok=True)
-    os.makedirs("../../logs/clustering_final/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/clustering_final", exist_ok=True)
+    os.makedirs("./logs/clustering_final/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(
         level = logging.DEBUG, 
         format = '%(asctime)s %(levelname)s: %(message)s', 
         datefmt = '%m/%d %H:%M:%S %p', 
-        filename = '../../logs/clustering_final/{}/{}.log'.format(args.output_name, args.output_name),
+        filename = './logs/clustering_final/{}/{}.log'.format(args.output_name, args.output_name),
         filemode = 'w'
     )
     return logging.getLogger()
@@ -70,10 +70,10 @@ def get_output_path(args):
         args.unique_bigram_threshold,
         args.sample_threshold,
     )
-    output_dir = "../../outputs/clustering_final/{}".format(output_name)
+    output_dir = "./outputs/clustering_final/{}".format(output_name)
 
-    os.makedirs("../../outputs/clustering_final", exist_ok=True)
-    os.makedirs("../../outputs/clustering_final/{}".format(output_name), exist_ok=True)
+    os.makedirs("./outputs/clustering_final", exist_ok=True)
+    os.makedirs("./outputs/clustering_final/{}".format(output_name), exist_ok=True)
     return output_name, output_dir
 
 def get_clean_df_info(df_info, target_df, args, seed):
@@ -111,8 +111,8 @@ def get_data_path(args):
         emb_name = "adj"
     elif args.cluster_type=="NOUN":
         emb_name = "noun"
-    df_info_path = "../../outputs/get_target_embs/{}/df_info.csv".format(name)
-    embeddings_path = "../../outputs/get_target_embs/{}/{}_embeddings.npy".format(name, emb_name)
+    df_info_path = "./outputs/get_target_embs/{}/df_info.csv".format(name)
+    embeddings_path = "./outputs/get_target_embs/{}/{}_embeddings.npy".format(name, emb_name)
     return df_info_path, embeddings_path
 
 def get_target_df(df, adj_ant_dict, args):

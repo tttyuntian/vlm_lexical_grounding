@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import torch
 
-from vlm_lexical_grounding.utils.general_tools import set_seed, get_embedder_path
+from ..utils.general_tools import set_seed, get_embedder_path
 from adj_noun_tools import load_embedder
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -42,9 +42,9 @@ def parseArguments():
     output_name, output_dir = get_output_path(args)
     parser.add_argument("--output_name", type=str, default=output_name)
     parser.add_argument("--output_dir", type=str, default=output_dir)
-    parser.add_argument("--data_path", type=str, default="../../data/wikiHow/wikihowAll_clean_single.csv")
-    parser.add_argument("--general_statistics_path", type=str, default="../../outputs/general_statistics/general_statistics_Rall/df_general.csv")
-    parser.add_argument("--mit_states_path", type=str, default="../../data/mit_states/release_dataset/adj_ants.csv")
+    parser.add_argument("--data_path", type=str, default="./data/wikiHow/wikihowAll_clean_single.csv")
+    parser.add_argument("--general_statistics_path", type=str, default="./outputs/general_statistics/general_statistics_Rall/df_general.csv")
+    parser.add_argument("--mit_states_path", type=str, default="./data/mit_states/release_dataset/adj_ants.csv")
     
     # Model parameters
     parser.add_argument("--max_length", type=int, default=512)
@@ -53,13 +53,13 @@ def parseArguments():
     return args
 
 def get_logger(args):
-    os.makedirs("../../logs/get_target_embs", exist_ok=True)
-    os.makedirs("../../logs/get_target_embs/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/get_target_embs", exist_ok=True)
+    os.makedirs("./logs/get_target_embs/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(
         level = logging.DEBUG, 
         format = '%(asctime)s %(levelname)s: %(message)s', 
         datefmt = '%m/%d %H:%M:%S %p', 
-        filename = '../../logs/get_target_embs/{}/{}.log'.format(args.output_name, args.output_name),
+        filename = './logs/get_target_embs/{}/{}.log'.format(args.output_name, args.output_name),
         filemode = 'w'
     )
     return logging.getLogger()
@@ -75,10 +75,10 @@ def get_output_path(args):
         args.unique_bigram_threshold,
         #args.retrieve_threshold,
     )
-    output_dir = "../../outputs/get_target_embs/{}".format(output_name)
+    output_dir = "./outputs/get_target_embs/{}".format(output_name)
 
-    os.makedirs("../../outputs/get_target_embs", exist_ok=True)
-    os.makedirs("../../outputs/get_target_embs/{}".format(output_name), exist_ok=True)
+    os.makedirs("./outputs/get_target_embs", exist_ok=True)
+    os.makedirs("./outputs/get_target_embs/{}".format(output_name), exist_ok=True)
     return output_name, output_dir
 
 def get_target_df(df, adj_ant_dict, args):

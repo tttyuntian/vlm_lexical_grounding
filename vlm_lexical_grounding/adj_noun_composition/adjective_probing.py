@@ -14,8 +14,8 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import transformers
 
-from vlm_lexical_grounding.utils.simple_classifier import AdjectiveProbingHead
-from vlm_lexical_grounding.utils.general_tools import get_embedder_path, set_seed
+from ..utils.simple_classifier import AdjectiveProbingHead
+from ..utils.general_tools import get_embedder_path, set_seed
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -60,9 +60,9 @@ def parseArguments():
 
     # I/O parameters
     df_info_path, embeddings_path = get_data_path(args)
-    parser.add_argument("--data_path", type=str, default="../../data/wikiHow/wikihowAll_clean_single.csv")
-    parser.add_argument("--mit_states_path", type=str, default="../../data/mit_states/release_dataset/adj_ants.csv")
-    parser.add_argument("--general_statistics_path", type=str, default="../../outputs/general_statistics/general_statistics_Rall/df_general.csv")
+    parser.add_argument("--data_path", type=str, default="./data/wikiHow/wikihowAll_clean_single.csv")
+    parser.add_argument("--mit_states_path", type=str, default="./data/mit_states/release_dataset/adj_ants.csv")
+    parser.add_argument("--general_statistics_path", type=str, default="./outputs/general_statistics/general_statistics_Rall/df_general.csv")
     parser.add_argument("--df_info_path", type=str, default=df_info_path)
     parser.add_argument("--embeddings_path", type=str, default=embeddings_path)
 
@@ -94,17 +94,17 @@ def get_data_path(args):
         emb_name = "adj"
     elif args.cluster_type=="NOUN":
         emb_name = "noun"
-    df_info_path = "../../outputs/get_target_embs/{}/df_info.csv".format(name)
-    embeddings_path = "../../outputs/get_target_embs/{}/{}_embeddings.npy".format(name, emb_name)
+    df_info_path = "./outputs/get_target_embs/{}/df_info.csv".format(name)
+    embeddings_path = "./outputs/get_target_embs/{}/{}_embeddings.npy".format(name, emb_name)
     return df_info_path, embeddings_path
 
 def get_logger(args):
-    os.makedirs("../../logs/adjective_probing", exist_ok=True)
-    os.makedirs("../../logs/adjective_probing/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/adjective_probing", exist_ok=True)
+    os.makedirs("./logs/adjective_probing/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(level=logging.INFO, \
             format = '%(asctime)s %(levelname)s: %(message)s', \
             datefmt = '%m/%d %H:%M:%S %p', \
-            filename = '../../logs/adjective_probing/{}/{}.log'.format(args.output_name, args.output_name), \
+            filename = './logs/adjective_probing/{}/{}.log'.format(args.output_name, args.output_name), \
             filemode = 'w'
     )
     return logging.getLogger(__name__)
@@ -114,7 +114,7 @@ def logging_args(args):
         logger.info("Argument {}: {}".format(arg, value))
 
 def output_predictions(true_list, best_pred_list, valid_df_info, run_id, args):
-    output_path = "../../outputs/adjective_probing/{}".format(args.output_name)
+    output_path = "./outputs/adjective_probing/{}".format(args.output_name)
     logger.info("Output predictions to {}".format(output_path))
     os.makedirs(output_path, exist_ok=True)
     

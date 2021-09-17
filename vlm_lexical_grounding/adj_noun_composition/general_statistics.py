@@ -8,7 +8,7 @@ import numpy as np
 import spacy
 import torch
 
-from vlm_lexical_grounding.utils.general_tools import set_seed, get_embedder_path
+from ..utils.general_tools import set_seed, get_embedder_path
 
 nlp = spacy.load("en_core_web_sm")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -30,19 +30,19 @@ def parseArguments():
     output_name, output_dir = get_output_path(args)
     parser.add_argument("--output_name", type=str, default=output_name)
     parser.add_argument("--output_dir", type=str, default=output_dir)
-    parser.add_argument("--data_path", type=str, default="../../data/wikiHow/wikihowAll_clean_single.csv")
+    parser.add_argument("--data_path", type=str, default="./data/wikiHow/wikihowAll_clean_single.csv")
     args = parser.parse_args()
 
     return args
 
 def get_logger(args):
-    os.makedirs("../../logs/general_statistics", exist_ok=True)
-    os.makedirs("../../logs/general_statistics/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/general_statistics", exist_ok=True)
+    os.makedirs("./logs/general_statistics/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(
         level = logging.DEBUG, 
         format = '%(asctime)s %(levelname)s: %(message)s', 
         datefmt = '%m/%d %H:%M:%S %p', 
-        filename = '../../logs/general_statistics/{}/{}.log'.format(args.output_name, args.output_name),
+        filename = './logs/general_statistics/{}/{}.log'.format(args.output_name, args.output_name),
         filemode = 'w'
     )
     return logging.getLogger()
@@ -54,9 +54,9 @@ def logging_args(args):
 def get_output_path(args):
     num_rows = "all" if args.num_rows == -1 else args.num_rows
     output_name = "general_statistics_R{}".format(num_rows)
-    output_dir = "../../outputs/general_statistics/{}".format(output_name)
-    os.makedirs("../../outputs/general_statistics", exist_ok=True)
-    os.makedirs("../../outputs/general_statistics/{}".format(output_name), exist_ok=True)
+    output_dir = "./outputs/general_statistics/{}".format(output_name)
+    os.makedirs("./outputs/general_statistics", exist_ok=True)
+    os.makedirs("./outputs/general_statistics/{}".format(output_name), exist_ok=True)
     return output_name, output_dir
 
 def get_df_general(df_noun, df_adj, adj_for_noun_counter, noun_for_adj_counter):

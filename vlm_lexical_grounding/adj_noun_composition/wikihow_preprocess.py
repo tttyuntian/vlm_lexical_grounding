@@ -3,8 +3,8 @@ import pandas as pd
 import nltk
 import re
 
-DATA_ROOT = "../../data/wikiHow/"
-DATA_PATH = os.join(DATA_ROOT, "wikihowAll.csv")
+DATA_ROOT = "./data/wikiHow/"
+DATA_PATH = os.path.join(DATA_ROOT, "wikihowAll.csv")
 TAG_RE = re.compile(r'<[^>]+>')
 
 concat_flag = False  # whether to concatenate two sentences together
