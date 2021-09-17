@@ -105,7 +105,7 @@ def main(args):
         
         # Preprocess data
         data_path, _ = get_data_path(args.data_dir_path, split=split)
-        samples = load_data(data_path)
+        samples = load_data(data_path, num_rows=args.num_rows)
         tokenized_samples = get_tokenized_samples(samples["text"], tokenizer, embedder.config.max_position_embeddings)
         dataset = PIQADataset(tokenized_samples)
 

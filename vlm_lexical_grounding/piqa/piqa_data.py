@@ -54,7 +54,7 @@ def load_data(data_path, label_path=None, num_rows=None):
         with open(label_path, "r") as f:
             samples["label"] = f.readlines()
             samples["label"] = [int(label) for label in samples["label"]]
-    if num_rows is not None:
+    if (num_rows is not None) and (num_rows != -1):
         samples["text"] = samples["text"][:num_rows*2]
         if label_path is not None:
             samples["label"] = samples["label"][:num_rows]
@@ -68,7 +68,7 @@ def load_emb_data(data_path, label_path, hidden_size, num_rows=None):
         samples["label"] = f.readlines()
         samples["label"] = [int(label) for label in samples["label"]]
     
-    if num_rows is not None and num_rows != -1:
+    if (num_rows is not None) and (num_rows != -1):
         samples["embedding"] = samples["embedding"][:num_rows]
         samples["label"] = samples["label"][:num_rows]
     return samples
