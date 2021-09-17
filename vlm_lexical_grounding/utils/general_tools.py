@@ -36,12 +36,12 @@ def get_embedder_path(embedder):
         config_path = "{}/bert_config.json".format(dir_path)
         model_path = "{}/topmask_vt/pytorch_model.bin".format(dir_path)
         vocab_path = "{}/vocab.txt".format(dir_path)
-    elif embedder == "VisualBERT":
+    elif embedder == "VisualBERT_vt":
         dir_path = "./models/visualbert"
         config_path = "{}/bert_config.json".format(dir_path)
         model_path = "{}/visualbert_vt/pytorch_model.bin".format(dir_path)
         vocab_path = "{}/vocab.txt".format(dir_path)
-    elif embedder == "VisualBERT_Text":
+    elif embedder == "VisualBERT_text":
         dir_path = "./models/visualbert"
         config_path = "{}/bert_config.json".format(dir_path)
         model_path = "{}/visualbert_text/pytorch_model.bin".format(dir_path)
