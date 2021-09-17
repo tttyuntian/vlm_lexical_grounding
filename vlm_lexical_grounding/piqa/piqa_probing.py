@@ -9,10 +9,10 @@ from torch.utils.data import DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-from vlm_lexical_grounding.utils.simple_classifier import MultipleChoiceProbingHead
-from vlm_lexical_grounding.utils.general_tools import set_seed, get_embedder_path
-from piqa_tools import get_emb_data_path, load_embedder
-from piqa_data import PIQAEmbeddingDataset, get_tokenized_samples, load_emb_data
+from ..utils.simple_classifier import MultipleChoiceProbingHead
+from ..utils.general_tools import set_seed, get_embedder_path
+from .piqa_tools import get_emb_data_path, load_embedder
+from .piqa_data import PIQAEmbeddingDataset, get_tokenized_samples, load_emb_data
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
