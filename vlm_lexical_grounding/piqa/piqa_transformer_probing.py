@@ -8,8 +8,9 @@ import torch
 from torch.utils.data import DataLoader
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+from transformers import BertTokenizer
 
-from ..utils.simple_classifier import MultipleChoiceProbingHead
+from ..utils.simple_classifier import MultipleChoiceClassifier
 from ..utils.general_tools import set_seed, get_embedder_path
 from .piqa_tools import get_data_path, load_embedder
 from .piqa_data import PIQADataset, get_tokenized_samples, load_data
