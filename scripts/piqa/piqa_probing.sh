@@ -10,7 +10,7 @@ done
 # Run experiment
 python3 -m vlm_lexical_grounding.piqa.piqa_probing \
     --verbose \
-    --num_rows 64 \
+    --num_rows -1 \
     --num_runs 5 \
     --embedder ${embedder} \
     --cls_type ${cls_type}
