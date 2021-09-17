@@ -27,7 +27,7 @@ def parseArguments():
     parser.add_argument("--num_rows", type=int, default=-1,
                         help="Number of samples for finetuning. -1 means all samples.")
     parser.add_argument("--seed", type=int, default=1123)
-    parser.add_argument("--data_dir_path", type=str, default="../../data/piqa")
+    parser.add_argument("--data_dir_path", type=str, default="./data/piqa")
     parser.add_argument("--num_runs", type=int, default=5)
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--report_step", type=int, default=100)
@@ -80,12 +80,12 @@ def get_output_name(args):
     return output_name
 
 def get_logger(args):
-    os.makedirs("../../logs/piqa", exist_ok=True)
-    os.makedirs("../../logs/piqa/{}".format(args.output_name), exist_ok=True)
+    os.makedirs("./logs/piqa", exist_ok=True)
+    os.makedirs("./logs/piqa/{}".format(args.output_name), exist_ok=True)
     logging.basicConfig(level=logging.INFO, \
             format = '%(asctime)s %(levelname)s: %(message)s', \
             datefmt = '%m/%d %H:%M:%S %p', \
-            filename = '../../logs/piqa/{}/{}.log'.format(args.output_name, args.output_name), \
+            filename = './logs/piqa/{}/{}.log'.format(args.output_name, args.output_name), \
             filemode = 'w'
     )
     return logging.getLogger(__name__)
@@ -95,7 +95,7 @@ def logging_args(args):
         logger.info("Argument {}: {}".format(arg, value))
 
 def output_predictions(true_list, best_pred_list, run_id, args):
-    output_path = "../../outputs/piqa/{}".format(args.output_name)
+    output_path = "./outputs/piqa/{}".format(args.output_name)
     logger.info("Output predictions to {}".format(output_path))
     os.makedirs(output_path, exist_ok=True)
 
