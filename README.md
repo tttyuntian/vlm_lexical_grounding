@@ -23,6 +23,7 @@
   * [2.2. Find Adjective Noun Candidate Pairs and Precompute Noun Embeddings](#22-find-adjective-noun-candidate-pairs-and-precompute-noun-embeddings)
   * [2.3. K-Means Clustering](#23-k-means-clustering)
   * [2.4. Adjective Probing](#24-adjective-probing)
+* [3. Pretrained VL and Text-only Models](#3-pretrained-vl-and-text-only-models)
 
 ## Installation
   ```shell script
