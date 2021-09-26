@@ -14,7 +14,15 @@
   ```
 
 **Outline**
-(placeholder)
+* [1. Physical Commonsense QA](#1-physical-commonsense-qa)
+  * [1.1. Download Data](#11-download-data)
+  * [1.2. Precompute Sentence Embeddings](#12-precompute-sentence-embeddings)
+  * [1.3. Probing Experiments](#13-probing-experiments)
+* [2. Adjective Noun Composition](#2-adjective-noun-composition)
+  * [2.1. Download and Preprocess Data](#21-download-and-preprocess-data)
+  * [2.2. Find Adjective Noun Candidate Pairs and Precompute Noun Embeddings](#22-find-adjective-noun-candidate-pairs-and-precompute-noun-embeddings)
+  * [2.3. K-Means Clustering](#23-k-means-clustering)
+  * [2.4. Adjective Probing](#24-adjective-probing)
 
 ## Installation
   ```shell script
